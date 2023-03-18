@@ -4,31 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="signin.css">
     <title>Document</title>
 </head>
 <body>
     <main>
         <div class="form-desine">
-            <span  class="word">Sign up page</span><br><br>
+            <span  class="word">Sign In page</span><br><br>
             <div id="error"></div>
         <form action="" >
-            <label for="name">Your Name</label>
-            <input type="text" id="name" class="box-field" required><br>
+        
             <label for="email">Your E-mail</label>
             <input type="email" id="email" class="box-field" required>
             <br>
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" class="box-field" required>
-            <br>
-            <label for="password">Set password</label>
-            <input type="password" id="password" class="box-field" required><br>
-            <button id="submitform"> Sign up</button>
-            
+            <label for="password">Put password</label>
+            <input type="password" id="password" class="box-field" required><br><br>
+            <button id="signinuser" class="submitform"> Sign in</button>
+            <a href="../signup/signup.html" class="ancker">Sign Up</a>
         </form>
     </div>
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="signup.js"></script>
+    <script src="signin.js"></script>
 </body>
 </html>

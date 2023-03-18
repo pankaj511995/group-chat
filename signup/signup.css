@@ -22,7 +22,7 @@ body{
     border-radius: 10px;
     border-style: none;
 }
-#submitform{
+.submitform{
     width: 100px;
     height: 30px;
     border-radius: 15px;
@@ -30,7 +30,10 @@ body{
     font-size: large;
     font-weight: 700;
 }
-#submitform:hover{
+.apage{
+   margin-left: 4rem;
+}
+.submitform:hover{
     background-color: rgb(80, 189, 152);
 }
 .word{

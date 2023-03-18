@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(144, 207, 207);
+}.ancker{
+    margin-left: 5rem;
+}
+.form-desine{
+    border-radius: 30px;
+    position: relative;
+    top: 15vh;
+    left: 25%;
+    text-align: center;
+    width: 400px;
+   padding-left: 20px;
+   padding: 50px;
+   font-size: large;
+   background-color: rgb(255, 240, 220);
+    
+}
+.box-field{
+    margin: 1rem;
+    margin-left: 2rem;
+    width: 50%;
+    height: 20px;
+    border-radius: 10px;
+    border-style: none;
+}
+.submitform{
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: rgba(158, 230, 107, 0.744);
+    font-size: large;
+    font-weight: 700;
+}
+.submitform:hover{
+    background-color: rgb(80, 189, 152);
+}
+.word{
+    font-size: x-large;
+    font-weight: 600;
+}
+#error{
+    background-color: red;
+    color: white;
+}
