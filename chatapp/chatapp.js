@@ -46,7 +46,17 @@ document.addEventListener('DOMContentLoaded',async()=>{
         }
     })
 })
-
+setInterval(async()=>{
+    allchat.innerHTML=''
+    const result= await axios.get('http://localhost:3000/message/allmessage',{headers:{'token':token}})
+    result.data.forEach(e=>{
+        if(username.id===e.UserId){
+            addInChatBox(e.message,e.name,true)
+        }else{
+            addInChatBox(e.message,e.name,false)
+        }
+    })
+},2000)
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
