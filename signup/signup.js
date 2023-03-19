@@ -13,6 +13,7 @@ document.getElementById('submitform').addEventListener('click',async(e)=>{
         return message('Oh! please fill all field')
     }
    const result= await axios.post('http://localhost:3000/user/signup',obj)
+   window.location.href="../signin/signin.html"
     message(result.data.message)
 }catch(err){
     

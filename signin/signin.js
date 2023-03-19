@@ -12,6 +12,7 @@ document.getElementById('signinuser').addEventListener('click',async(e)=>{
         }
     const result= await axios.post('http://localhost:3000/user/signin',obj)
     localStorage.setItem('username_group_chat',result.data.token)
+    window.location.href="../chatapp/chatapp.html"
         message(result.data.message)
 }catch(err){
     message(err.response.data.message)

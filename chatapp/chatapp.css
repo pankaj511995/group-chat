@@ -1,0 +1,74 @@
+
+#listOfAllChat {
+    list-style-type: none;
+    font-size: medium;
+    
+}
+.chatList_item_otheruser{
+    background-color: rgba(30, 203, 140, 0.71);
+    padding: 0px 10px 10px  10px;
+    width: max-content;
+    min-width: 50%;
+    margin-top: 0.4rem;
+    border-radius: 0px 20px 20px 0px;
+}
+.chatList_item_user{
+    text-align: right;
+    padding: 0px 0px 10px  0px;
+    min-width: 50%;
+    max-width: 50%;
+    border-radius: 20px 0px 0px 20px;
+    position: relative;
+    left: 50%;
+    background-color: antiquewhite;
+     margin-top: 0.4rem;
+ 
+ }
+
+#inputfield{
+    max-width: 700px;
+    width: 85%;
+    height: 25px;
+    border-radius: 20px 0px 0px 20px; 
+}
+#sendessage{
+    height: 30px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgba(21, 0, 255, 0.984);
+    color: white;
+    font-size: medium;
+    font-weight: 500;
+}
+.allchat{
+  
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    min-height: 450px;
+    max-height: 60vh;
+    background-color: rgba(222, 238, 214, 0.539);
+    border-style: ridge;
+    border-radius: 10px 10px 10px 10px;
+    /* overflow: scroll; */
+    overflow-y: scroll;
+   
+}
+body{
+    background-color: rgba(7, 116, 5, 0.792);
+}
+.heading{
+    max-width: 800px;
+    width: 100%;
+    font-size: x-large;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    background-color: rgba(0, 255, 255, 0.749);
+   
+}
+body{
+    vertical-align: middle;
+    position: relative;
+    left: 5%;
+  
+}
