@@ -1,18 +1,24 @@
 const token=localStorage.getItem('username_group_chat')
 const username=parseJwt(token)
-const arr=['i joined','yes you ?','i will join soon pleasewait','how long should i wait','sorry for delay','yes we can start your discussion','ok let us start','thanks','i joined','yes you ?','i will join soon pleasewait','how long should i wait','sorry for delay','yes we can start your discussion','ok let us start','thanks','i joined','yes you ?','i will join soon pleasewait','how long should i wait','sorry for delay','yes we can start your discussion','ok let us start','thanks','i joined','yes you ?','i will join soon pleasewait','how long should i wait','sorry for delay','yes we can start your discussion','ok let us start','thanks']
 
 const allchat=document.getElementById('listOfAllChat')
 
-function addInChatBox(message,myself){
+function addInChatBox(message,name,myself){
         let li=document.createElement('li')
         li.appendChild(document.createTextNode(message))
+        let nameofuser=document.createElement('li')
+        nameofuser.appendChild(document.createTextNode(name))
+        nameofuser.className='user_name_print'
         if(myself){
             li.className='chatList_item_user'
+            nameofuser.className='user_name_print'
         }else{
             li.className='chatList_item_otheruser'
+            nameofuser.className='other_name_print'
         }
+        allchat.appendChild(nameofuser)
         allchat.appendChild(li)    
+     
 }
 
 
@@ -22,7 +28,7 @@ document.getElementById('sendessage').addEventListener('click',async(e)=>{
     e.preventDefault()
     const message=document.getElementById('inputfield').value
     const result= await axios.post('http://localhost:3000/message/send',{message:message},{headers:{'token':token}})
-    addInChatBox(message,true)
+    addInChatBox(message,username.name,true)
     document.getElementById('inputfield').value=''
 }catch(err){
     
@@ -34,9 +40,9 @@ document.addEventListener('DOMContentLoaded',async()=>{
     console.log(result.data)
     result.data.forEach(e=>{
         if(username.id===e.UserId){
-            addInChatBox(e.message,true)
+            addInChatBox(e.message,e.name,true)
         }else{
-            addInChatBox(e.message,false)
+            addInChatBox(e.message,e.name,false)
         }
     })
 })
