@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chatapp.css">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="heading">
+        <div class="addInGroup">
+            <form action="">
+                <input type="text" id="create_group"placeholder="group name">
+                <button id="create_group_button">Create group</button>
+            </form>
+        </div>
+        <div class="chat_word">
+        Chat app</div></div>
+    
+    <div class="chat_box">
+    <div id="sidebar"></div>
+    <div id="show_all_member"></div>
+    <div class="allchat">
+        <div class="active_all">
+           
+            <button id="all_member">show all</button> <button id="all_member_hide">Hide</button>
+   <div id="active_group" ></div>
+   <div>
+   <form action="">
+    <input type="email" id="add_member"placeholder="email">
+    <input type="submit"  id="add_member_in_group" value="all member">
+   
+   
+</form>
+</div>
+</div>
+    <div id="listOfAllChat"></div>
+</div></div>
+<div id="inputmessage">
+<form action="">
+    <input type="text" id="inputfield" placeholder="enter your text messsage">
+    <button id="sendessage">Send</button>
+</form>
+</div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="chatapp.js"></script>
+    <script src="multiuser.js"></script>
+</body>
+</html>

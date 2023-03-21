@@ -21,8 +21,9 @@
 }
 .allchat{
   
-    max-width: 800px;
-    width: 95%;
+   padding-right: 10px;
+    width: 80%;
+    max-width: 620px;
     position: relative;
     min-height: 450px;
     max-height: 60vh;
@@ -33,18 +34,46 @@
     overflow-y: scroll;
    
 }
+#show_all_member{
+    max-width: min-content;
+    background-color: rgb(240, 255, 246);
+}
+#sidebar{
+    width: 100px;
+    background-color: rgba(158, 158, 229, 0.621);
+   
+ }
 body{
     background-color: rgba(7, 116, 5, 0.792);
 }
 .heading{
     max-width: 800px;
     width: 100%;
-    font-size: x-large;
-    font-weight: 700;
-    text-align: center;
+   ;
     position: relative;
+    display: flex;
     background-color: rgba(0, 255, 255, 0.749);
    
+}
+.chat_word{
+    text-align: center;
+    position: relative;
+    font-size: x-large;
+    font-weight: 700;
+    left: 30%;
+}
+#create_group_button{
+    border-radius: 5px;
+    width: max-content;
+    height:25px;
+    border-style: none;
+    cursor: pointer;
+    font-weight: 700;
+    background-color: #FFF;
+}
+#create_group{
+    height:20px;
+    width: 100px;
 }
 body{
     vertical-align: middle;
@@ -98,3 +127,54 @@ body{
      
  
  }
+ .chat_box{
+    display: flex;
+ }
+ 
+ .group{
+    width: 100%;
+    border-style: none;
+    /* height: 25px; */
+    padding: 5px 0px 8px 0px;
+    cursor: pointer;
+    color: rgb(254, 252, 252);
+    background-color: rgb(7, 112, 112);
+   text-overflow: ellipsis;
+    margin-top: 0.4rem;
+ }
+ .group:hover{
+    background-color: darkgray;
+ }
+ #active_group{
+    background-color: rgb(234, 240, 237);
+    width: 100%;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+ }
+ .active_all{
+    display: flex;
+    width: 100%;
+ }
+ #all_member,#add_member_in_group,#all_member_hide{
+    /* background-color: blue; */
+    min-width: fit-content;
+    background-color: beige;
+
+ }
+ #add_member{
+    
+    width: 100px;
+    /* background-color: red; */
+ }
+ /* #add_member_in_group{
+    background-color: forestgreen;
+ } */
+.addmember_hide{
+    visibility: hidden;
+   
+}
+.addmember{
+    visibility: visible;
+}
