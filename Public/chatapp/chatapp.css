@@ -35,7 +35,7 @@
    
 }
 #show_all_member{
-    max-width: min-content;
+    max-width:150px;
     background-color: rgb(240, 255, 246);
 }
 #sidebar{
@@ -165,7 +165,7 @@ body{
  }
  #add_member{
     
-    width: 100px;
+    width: 200px;
     /* background-color: red; */
  }
  /* #add_member_in_group{
@@ -177,4 +177,17 @@ body{
 }
 .addmember{
     visibility: visible;
+}
+.group_member{
+    border-style: none;
+    margin-right: 0.2rem;
+    background-color: rgb(6, 111, 76);
+    color: white;
+    width: 100%;
+    margin-top: 0.4rem;
+    text-align: left;
+}
+.delet_member{
+    background-color: rgb(200, 7, 7);
+    color: white;
 }
