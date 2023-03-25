@@ -17,7 +17,7 @@
             </form>
         </div>
         <div class="chat_word">
-        Chat app</div></div>
+        Chat app</div><a href="">send link</a></div>
     
     <div class="chat_box">
     <div id="sidebar"></div>
@@ -30,10 +30,9 @@
    <div>
    <form action="">
     <input type="email" id="add_member"placeholder="email">
-    <input type="submit"  id="add_member_in_group" value="all member">
-   
-   
+    <input type="submit"  id="add_member_in_group" value="all member"> 
 </form>
+
 </div>
 </div>
     <div id="listOfAllChat"></div>
@@ -42,8 +41,14 @@
 <form action="">
     <input type="text" id="inputfield" placeholder="enter your text messsage">
     <button id="sendessage">Send</button>
+    <input type="file" id="imagesend"><button id="sendfile">send</button>
+    <button id="getimage">get Image </button>
 </form>
+<div id="imageshow"></div>
 </div>
+
+<script  src="http://localhost:3000/socket.io/socket.io.js"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="chatapp.js"></script>
     <script src="multiuser.js"></script>

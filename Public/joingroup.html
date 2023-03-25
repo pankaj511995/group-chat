@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>joinlink</title>
+    <style>
+    #joinnow{
+        position: relative;
+        left: 45%;
+        top: 40vh;
+        padding: 20px 50px 20px 50px ;
+        border-radius: 40%;
+        font-size: x-large;
+        font-weight: 700;
+        background-color: aqua;
+        cursor: pointer;
+    }
+    </style>
 </head>
 <body>
-    <h1>hoin my group</h1>
+    <h1>join group</h1>
+    <form action="">
+        <input type="hidden" id="groupid">
+        <button id="joinnow">Join group</button>
+    </form>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script >
+        
+        document.getElementById('joinnow').addEventListener('click', async(e)=>{
+            e.preventDefault()
+            const token=localStorage.getItem('username_group_chat')
+            if(token){
+                const result= await axios.get(`http://localhost:3000/group/joingeoup/${11}`,{headers:{'token':token}})
+                alert(result.data.message)
+                window.location.href="./chatapp/chatapp.html"
+            }else{
+                alert('please log in ')
+                window.location.href="./signin/signin.html"
+            }
+        })
+    </script>
 </body>
 </html>
