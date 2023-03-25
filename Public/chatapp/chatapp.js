@@ -2,7 +2,7 @@
 const allchat=document.getElementById('listOfAllChat')
 const showGroup=document.getElementById('sidebar')
 const showallmember= document.getElementById('show_all_member')
-const socket=io('http://localhost:3000')///message/send
+const socket=io('http://localhost:3000')
 
 socket.on('messagetoall',(message,name)=>{
     addInChatBox(message,name,false)
@@ -35,7 +35,7 @@ function addInChatBox(message,name,myself){
         allchat.appendChild(nameofuser)
         allchat.appendChild(li)  
     }  
-        console.log(name==='urlLink',name)
+        
      
 }
 async function localstoragecall(arr){
@@ -50,9 +50,6 @@ async function localstoragecall(arr){
             addInChatBox(e.message,e.name,false)
         }
     })
-}
-function showbroadcasting(message,name){
-
 }
 function storeInLocalStorage(result,newmessage,groupId){
     return new Promise((resolve,reject)=>{
@@ -87,28 +84,37 @@ function addlocalstorageGroup(newMember){
     res('true')
 })
 }
+function printgroup(){
+    const result=localStorage.getItem('all_group_list')
+    if(result){
+        const group=JSON.parse(result)
+        group.forEach(e=> allGroupdetails(e.groupName,e.groupId))
+        }
+        document.getElementById('add_member_in_group').className = 'addmember_hide';
+        
+}
 showGroup.addEventListener('click',async(e)=>{
+    try{
+        const token=localStorage.getItem('username_group_chat')
     let grouphit=e.target.classList.contains('group')
     e.preventDefault()
     if(grouphit){
         const messageId=e.target.value
-        const room=`groupnumber${messageId}`
+        const room=messageId
         socket.emit('generategroup',room)
         document.getElementById('active_group').innerHTML=e.target.name
         localStorage.setItem('active_group_id',JSON.stringify({groupId:messageId,groupName:e.target.name}))
         allchat.innerHTML=''
         //
-        const token=localStorage.getItem('username_group_chat')
+       
         const result1=localStorage.getItem(`user_chat_all${messageId}`)
-       let lastmessage=1
+       let lastmessage=0
         let result=[]
     if(result1){
          result=JSON.parse(result1)
      lastmessage=result[result.length-1].id
-    }else{
-         lastmessage=1
     }
-     const newmessage= await axios.post(`http://localhost:3000/message/newmessage`,{lastmessage:0,groupId:messageId},{headers:{'token':token}})
+     const newmessage= await axios.post(`http://localhost:3000/message/newmessage`,{lastmessage:lastmessage,groupId:messageId},{headers:{'token':token}})
      if(newmessage.data.length>0){
        await storeInLocalStorage(result,newmessage.data,messageId)
              
@@ -125,6 +131,9 @@ showGroup.addEventListener('click',async(e)=>{
         
        
     }
+}catch(err){
+        console.log('sorry timer failed')
+    }
 })
 
   document.getElementById('sendessage').addEventListener('click',async(e)=>{
@@ -137,28 +146,16 @@ showGroup.addEventListener('click',async(e)=>{
             
             const result= await axios.post('http://localhost:3000/message/send',{message:message,groupId:messageId},{headers:{'token':token}})
             addInChatBox(message,username.name,true)
-            //socket
-            const room=`groupnumber${messageId}`
+            const room=messageId
             socket.emit('sendmessae',room,username.name,message,username.id)
-            // socket.on('messagetoall',(message,name,id)=>{
-            //  console.log(message,name,'broadcasting')
-            // // alert(message,'sent by->',name)
-            //  if(id===username.id){
-            //     // addInChatBox(message,username.name,true)
-            //     console.log('same username  ',username,name,username.name===name)
-            //  }else{
-            //     addInChatBox(message,name,false)
-            //  }
-             
-            // })
-
+           
             
-            // const storageitem=localStorage.getItem(`user_chat_all${messageId}`)
-            // if(storageitem){
-            //  storeInLocalStorage(JSON.parse(storageitem),[result.data],messageId)
-            // }else{
-            //     storeInLocalStorage([],[result.data],messageId)
-            // }
+            const storageitem=localStorage.getItem(`user_chat_all${messageId}`)
+            if(storageitem){
+             storeInLocalStorage(JSON.parse(storageitem),[result.data],messageId)
+            }else{
+                storeInLocalStorage([],[result.data],messageId)
+            }
 
             document.getElementById('inputfield').value=''
      }catch(err){
@@ -166,49 +163,30 @@ showGroup.addEventListener('click',async(e)=>{
     }
     
 })
-    
-
-
-
-
-// setTimeout(async()=>{
-//     try{
-    //     const token=localStorage.getItem('username_group_chat')
-    // const result1=localStorage.getItem('user_chat_all')
-    // if(result1){
-    //     const result=JSON.parse(result1)
-    // const lastmessage=result[result.length-1].id
-    //  const newmessage= await axios.get(`http://localhost:3000/message/newmessage?lastmessage=${lastmessage}`,{headers:{'token':token}})
-    //  if(newmessage.data.length>0){
-    //     newmessage.data.forEach(e=>{
-    //          addInChatBox(e.message,e.name,false)
-    //     })
-  
-//  
-   
-    // }
-// }catch(err){
-//     console.log('sorry timer failed')
-// }
-// },5000)
-
-
+ 
 document.addEventListener('DOMContentLoaded',async()=>{
     const token=localStorage.getItem('username_group_chat')
-    const allgroup= await axios.post('http://localhost:3000/group/allnewadded',{lastcheck:0},{headers:{'token':token}})
-    
-    let  arr=[]
-    allgroup.data.forEach(e=>arr.push({"groupId":Number(e.id),"groupName":e.groupname}))
-    localStorage.setItem('all_group_list',JSON.stringify(arr))
-    // await addlocalstorageGroup(arr)
-    const result=localStorage.getItem('all_group_list')
-    if(result){
-        const group=JSON.parse(result)
-        group.forEach(e=> allGroupdetails(e.groupName,e.groupId))
-        }
-        document.getElementById('add_member_in_group').className = 'addmember_hide';
+    const localgroup=JSON.parse(localStorage.getItem('all_group_list'))
+    let lastcheck=0;
+    if(localgroup.length!=0){
         
+        lastcheck=localgroup[localgroup.length-1].groupId
+    }
+    
+    const allgroup= await axios.post('http://localhost:3000/group/allnewadded',{lastcheck:lastcheck},{headers:{'token':token}})
+    let store=[]
+    console.log(allgroup.data,'group list is ')
+    if(localgroup){
+        // store=[...localgroup]
+    }
+    allgroup.data.forEach(e=>store.push({"groupId":Number(e.id),"groupName":e.groupname}))
+  
+   
+    localStorage.setItem('all_group_list',JSON.stringify(store))
+    printgroup()
+   
 })
+
 
 document.getElementById('create_group_button').addEventListener('click',async(e)=>{
     try{

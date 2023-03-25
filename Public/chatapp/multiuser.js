@@ -23,18 +23,30 @@ function showallgroupmember(name,value,admin){
         console.log('error while deleing item ')
     }
 }
-
+function removefromgroup(groupId){
+    const localgroup=localStorage.getItem('all_group_list')
+    if(localgroup){
+        const arr=JSON.parse(localgroup)
+        let store=arr.filter(e=>e.groupId!=groupId)
+        localStorage.setItem('all_group_list',JSON.stringify(store))
+        alert('you does not exit so removing from group')
+    }
+}
 document.getElementById('all_member').addEventListener('click',async(e)=>{
     try{
             e.preventDefault()
             const active_uer=JSON.parse(localStorage.getItem('active_group_id'))
             const token=localStorage.getItem('username_group_chat')
             const username=await parseJwt(token)
-
-            const result= await axios.post('http://localhost:3000/group/allmember',{groupId:active_uer.groupId},{headers:{'token':token}})
-
+        const lasstvalue=0
+            const result= await axios.post('http://localhost:3000/group/allmember',{groupId:active_uer.groupId,lastcheck:lasstvalue},{headers:{'token':token}})
+            if(result.data.data.length===0){
+                console.log('remove me')
+                removefromgroup(active_uer.groupId)
+            }
         let admin=(result.data.admin===username.id)
         showallmember.innerHTML=''
+        console.log(result.data.data)
             result.data.data.forEach(e=>showallgroupmember(e.name,e.id,admin))
     }catch(err){
         console.log('error while displaying all member ')
@@ -85,5 +97,4 @@ document.getElementById('getimage').addEventListener('click',async(e)=>{
     document.getElementById('imageshow').innerHTML=`<image src= ></image>`
     console.log(result,'display image')
 })
-
 
